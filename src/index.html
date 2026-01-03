@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Heartbeat</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
+    <heart-beat-root></heart-beat-root>
+
+    <script>
+      function getURLParamValue(name, url) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+        const results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+      }
+
+      let WorkStation = sessionStorage.getItem('WorkStation');
+
+      if (!WorkStation || WorkStation === 'Unknown') {
+        const url = window.location.href;
+        WorkStation = getURLParamValue('MACHINE', url);
+
+        if (!WorkStation) {
+          WorkStation = 'Unknown';
+        }
+
+        sessionStorage.setItem('WorkStation', WorkStation);
+      }
+    </script>
+  </body>
+</html>
