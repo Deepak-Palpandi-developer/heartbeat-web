@@ -4,7 +4,7 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'heart-beat-root',
   imports: [RouterOutlet],
-  template: `<RouterOutlet></RouterOutlet>`,
+  template: `<router-outlet />`,
 })
 export class App {
   protected readonly title = signal('heartbeat');
