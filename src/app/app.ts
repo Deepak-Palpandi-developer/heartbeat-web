@@ -1,11 +1,17 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { LoaderService } from './core/services/loader.service';
+import { LoaderComponent } from './shared/components/loader.component';
 
 @Component({
   selector: 'heart-beat-root',
-  imports: [RouterOutlet],
-  template: `<router-outlet />`,
+  imports: [RouterOutlet, LoaderComponent],
+  template: `<heart-beat-loader /><router-outlet />`,
 })
 export class App {
-  protected readonly title = signal('heartbeat');
+  private loderService = inject(LoaderService);
+
+  ngOnInit() {
+    this.loderService.show();
+  }
 }
