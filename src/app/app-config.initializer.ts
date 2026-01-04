@@ -11,6 +11,9 @@ export function appConfigInitializerFactory(): () => Promise<void> {
   return async () => {
     try {
       const config: any = await firstValueFrom(http.get<any>(API_ROUTES.APP_CONFIG));
+
+      console.log('Fetched app config:', config);
+
       if (config && Array.isArray(config)) {
         appSignal.setAppConfigs(config);
       }

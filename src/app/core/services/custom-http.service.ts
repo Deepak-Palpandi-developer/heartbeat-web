@@ -16,7 +16,7 @@ export class CustomHttpService {
 
   get<T>(url: string, options?: object): Observable<T> {
     this.loader.show();
-    return this.http.get<T>(environment.apiBaseUrl + url, options).pipe(
+    return this.http.get<T>(environment.API_URL + url, options).pipe(
       retry(3),
       catchError(this.handleError),
       finalize(() => this.loader.hide())
@@ -25,7 +25,7 @@ export class CustomHttpService {
 
   post<T>(url: string, body: any, options?: object): Observable<T> {
     this.loader.show();
-    return this.http.post<T>(environment.apiBaseUrl + url, body, options).pipe(
+    return this.http.post<T>(environment.API_URL + url, body, options).pipe(
       retry(3),
       catchError(this.handleError),
       finalize(() => this.loader.hide())
@@ -34,7 +34,7 @@ export class CustomHttpService {
 
   put<T>(url: string, body: any, options?: object): Observable<T> {
     this.loader.show();
-    return this.http.put<T>(environment.apiBaseUrl + url, body, options).pipe(
+    return this.http.put<T>(environment.API_URL + url, body, options).pipe(
       retry(3),
       catchError(this.handleError),
       finalize(() => this.loader.hide())
@@ -43,7 +43,7 @@ export class CustomHttpService {
 
   patch<T>(url: string, body: any, options?: object): Observable<T> {
     this.loader.show();
-    return this.http.patch<T>(environment.apiBaseUrl + url, body, options).pipe(
+    return this.http.patch<T>(environment.API_URL + url, body, options).pipe(
       retry(3),
       catchError(this.handleError),
       finalize(() => this.loader.hide())
@@ -52,7 +52,7 @@ export class CustomHttpService {
 
   delete<T>(url: string, options?: object): Observable<T> {
     this.loader.show();
-    return this.http.delete<T>(environment.apiBaseUrl + url, options).pipe(
+    return this.http.delete<T>(environment.API_URL + url, options).pipe(
       retry(3),
       catchError(this.handleError),
       finalize(() => this.loader.hide())
