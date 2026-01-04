@@ -1,0 +1,29 @@
+{
+  "ui": {
+    "close": "Close",
+    "learnMore": "Learn more",
+    "loading": "Loading"
+  },
+  "alert": {
+    "apiError": {
+      "title": "API Error",
+      "message": "An error occurred after 3 attempts.",
+      "serverMessage": "Server returned code {{status}} after 3 attempts: {{message}}"
+    },
+    "unexpectedError": {
+      "title": "Unexpected Error"
+    },
+    "sessionExpired": {
+      "title": "Session Expired",
+      "message": "Your session has expired. Please log in again."
+    },
+    "sessionRefreshFailed": {
+      "title": "Session Refresh Failed",
+      "message": "Could not refresh your session. Please log in again."
+    },
+    "traceError": {
+      "title": "Trace Error",
+      "message": "Failed to record activity trace."
+    }
+  }
+}

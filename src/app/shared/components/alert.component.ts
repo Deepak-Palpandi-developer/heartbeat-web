@@ -1,10 +1,11 @@
 import { Component, computed, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgIcon } from '@ng-icons/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'heart-beat-alert',
-  imports: [NgIcon, RouterLink],
+  imports: [NgIcon, RouterLink, TranslatePipe],
   template: `
     <div class="rounded-xl border p-4" [class]="variantClasses().container">
       <div class="flex items-start gap-3">
@@ -24,7 +25,7 @@ import { NgIcon } from '@ng-icons/core';
             [routerLink]="linkHref()"
             class="inline-block mt-3 text-sm font-medium text-gray-500 underline dark:text-gray-400"
           >
-            {{ linkText() }}
+            {{ linkText() | translate }}
           </a>
           }
         </div>
@@ -39,7 +40,7 @@ export class AlertComponent {
   message = input<string>('');
   showLink = input<boolean>(false);
   linkHref = input<string>('#');
-  linkText = input<string>('Learn more');
+  linkText = input<string>('ui.learnMore');
 
   variantClasses = computed(() => {
     const variantMap = {

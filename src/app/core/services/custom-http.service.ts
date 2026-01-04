@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry, finalize } from 'rxjs/operators';
 import { LoaderService } from './loader.service';
 import { AlertService } from './alert.service';
+import { CustomTranslateService } from './custom-translate.service';
 import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
@@ -11,6 +12,7 @@ export class CustomHttpService {
   private http = inject(HttpClient);
   private loader = inject(LoaderService);
   private alertService = inject(AlertService);
+  private translate = inject(CustomTranslateService);
 
   get<T>(url: string, options?: object): Observable<T> {
     this.loader.show();
@@ -58,17 +60,25 @@ export class CustomHttpService {
   }
 
   private handleError = (error: HttpErrorResponse): Observable<never> => {
-    // Only send error message after 3 failed attempts
-    let errorMessage = 'An error occurred after 3 attempts.';
+    let errorMessage: string;
+    let translateKey: string;
+    let translateParams: any = {};
     if (error.error instanceof ErrorEvent) {
-      errorMessage = `Error after 3 attempts: ${error.error.message}`;
+      translateKey = 'alert.apiError.message';
+      const translated = this.translate.translate(translateKey);
+      errorMessage = typeof translated === 'string' ? translated : translateKey;
     } else {
-      errorMessage = `Server returned code ${error.status} after 3 attempts: ${error.message}`;
+      translateKey = 'alert.apiError.serverMessage';
+      translateParams = { status: error.status, message: error.message };
+      const translated = this.translate.translate(translateKey, translateParams);
+      errorMessage = typeof translated === 'string' ? translated : translateKey;
     }
     this.alertService.show({
       variant: 'error',
-      title: 'API Error',
+      title: 'alert.apiError.title',
       message: errorMessage,
+      translateKey,
+      translateParams,
     });
     return throwError(() => new Error(errorMessage));
   };
