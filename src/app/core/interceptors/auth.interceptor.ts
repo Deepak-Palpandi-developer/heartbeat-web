@@ -11,11 +11,13 @@ import { catchError, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { API_ROUTES } from '../../shared/const/api-routes.const';
 import { AppSignalService } from '../../shared/signals/app-signal.service';
+import { AlertService } from '../../core/services/alert.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthInterceptor implements HttpInterceptor {
   private router = inject(Router);
   private appSignal = inject(AppSignalService);
+  private alertService = inject(AlertService);
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // Determine storage type based on 'remember' flag
@@ -57,22 +59,38 @@ export class AuthInterceptor implements HttpInterceptor {
           }
           return of(event);
         }),
-        catchError((error: any) => {
+        catchError((error: unknown) => {
           if (error instanceof HttpErrorResponse && error.status === 401) {
             // Try refresh token
             return this.handle401(cloned, next, storage);
           }
+          // Show alert for other errors
+          const message =
+            error instanceof HttpErrorResponse ? error.message : 'An unexpected error occurred';
+          this.alertService.show({
+            variant: 'error',
+            title: 'API Error',
+            message,
+          });
           return throwError(() => error);
         })
       );
     }
     // Not a cacheable API, proceed as normal
     return next.handle(cloned).pipe(
-      catchError((error: any) => {
+      catchError((error: unknown) => {
         if (error instanceof HttpErrorResponse && error.status === 401) {
           // Try refresh token
           return this.handle401(cloned, next, storage);
         }
+        // Show alert for other errors
+        const message =
+          error instanceof HttpErrorResponse ? error.message : 'An unexpected error occurred';
+        this.alertService.show({
+          variant: 'error',
+          title: 'API Error',
+          message,
+        });
         return throwError(() => error);
       })
     );
@@ -88,6 +106,11 @@ export class AuthInterceptor implements HttpInterceptor {
     const sessionToken = storage.getItem('session_token');
     const userId = storage.getItem('user_id');
     if (!refreshToken || !userId) {
+      this.alertService.show({
+        variant: 'error',
+        title: 'Session Expired',
+        message: 'Your session has expired. Please log in again.',
+      });
       this.router.navigate(['/login']);
       return throwError(() => new Error('No refresh token or user id'));
     }
@@ -115,6 +138,11 @@ export class AuthInterceptor implements HttpInterceptor {
           if (data.refresh_token) storage.setItem('refresh_token', data.refresh_token);
           return true;
         } else {
+          this.alertService.show({
+            variant: 'error',
+            title: 'Session Refresh Failed',
+            message: 'Could not refresh your session. Please log in again.',
+          });
           throw new Error('Refresh failed');
         }
       }),
@@ -131,11 +159,21 @@ export class AuthInterceptor implements HttpInterceptor {
           const retried = req.clone({ headers });
           return next.handle(retried);
         } else {
+          this.alertService.show({
+            variant: 'error',
+            title: 'Session Refresh Failed',
+            message: 'Could not refresh your session. Please log in again.',
+          });
           this.router.navigate(['/login']);
           return throwError(() => new Error('Refresh failed'));
         }
       }),
       catchError(() => {
+        this.alertService.show({
+          variant: 'error',
+          title: 'Session Refresh Failed',
+          message: 'Could not refresh your session. Please log in again.',
+        });
         this.router.navigate(['/login']);
         return throwError(() => new Error('Refresh failed'));
       })

@@ -1,4 +1,5 @@
 import { Injectable, inject } from '@angular/core';
+import { AlertService } from './alert.service';
 import { CustomHttpService } from './custom-http.service';
 import { API_ROUTES } from '../../shared/const/api-routes.const';
 
@@ -14,6 +15,7 @@ export interface TraceEvent {
 @Injectable({ providedIn: 'root' })
 export class TraceService {
   private http = inject(CustomHttpService);
+  private alertService = inject(AlertService);
 
   trace(userId: string, module: string, activity: string, state: string, details?: any): void {
     const event: TraceEvent = {
@@ -26,7 +28,14 @@ export class TraceService {
     };
     this.http.post(API_ROUTES.TRACE, event).subscribe({
       next: () => {},
-      error: (err) => { console.error('Trace failed', err); }
+      error: (err) => {
+        console.error('Trace failed', err);
+        this.alertService.show({
+          variant: 'error',
+          title: 'Trace Error',
+          message: 'Failed to record activity trace.',
+        });
+      },
     });
   }
 }

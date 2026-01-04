@@ -1,4 +1,5 @@
 import { ErrorHandler, Injectable, inject } from '@angular/core';
+import { AlertService } from './alert.service';
 
 interface GlobalError {
   component?: string;
@@ -9,6 +10,7 @@ interface GlobalError {
 
 @Injectable({ providedIn: 'root' })
 export class GlobalErrorHandler implements ErrorHandler {
+  private alertService = inject(AlertService);
   handleError(error: any): void {
     // Try to extract component and line info if available
     let component: string | undefined;
@@ -43,7 +45,11 @@ export class GlobalErrorHandler implements ErrorHandler {
 
     // Log to console (could also send to server or show UI notification)
     console.error('Global Error:', globalError);
-    // Optionally, display a user-friendly message or route to an error page
-    // e.g., NotificationService.showError(message);
+    // Show user-friendly alert
+    this.alertService.show({
+      variant: 'error',
+      title: 'Unexpected Error',
+      message,
+    });
   }
 }

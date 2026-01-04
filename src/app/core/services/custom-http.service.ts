@@ -3,12 +3,14 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry, finalize } from 'rxjs/operators';
 import { LoaderService } from './loader.service';
+import { AlertService } from './alert.service';
 import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class CustomHttpService {
   private http = inject(HttpClient);
   private loader = inject(LoaderService);
+  private alertService = inject(AlertService);
 
   get<T>(url: string, options?: object): Observable<T> {
     this.loader.show();
@@ -55,7 +57,7 @@ export class CustomHttpService {
     );
   }
 
-  private handleError(error: HttpErrorResponse): Observable<never> {
+  private handleError = (error: HttpErrorResponse): Observable<never> => {
     // Only send error message after 3 failed attempts
     let errorMessage = 'An error occurred after 3 attempts.';
     if (error.error instanceof ErrorEvent) {
@@ -63,6 +65,11 @@ export class CustomHttpService {
     } else {
       errorMessage = `Server returned code ${error.status} after 3 attempts: ${error.message}`;
     }
+    this.alertService.show({
+      variant: 'error',
+      title: 'API Error',
+      message: errorMessage,
+    });
     return throwError(() => new Error(errorMessage));
-  }
+  };
 }
