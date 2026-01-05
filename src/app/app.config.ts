@@ -10,13 +10,14 @@ import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { routes } from './app.routes';
 import { securityInterceptor } from './core/interceptors/security.interceptor';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
+import { cryptoInterceptor } from './core/interceptors/crypto.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     APP_CONFIG_INITIALIZER,
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([securityInterceptor, authInterceptor])),
+    provideHttpClient(withInterceptors([securityInterceptor, cryptoInterceptor])),
     provideTranslateService({
       loader: provideTranslateHttpLoader({
         prefix: '/i18n/',
