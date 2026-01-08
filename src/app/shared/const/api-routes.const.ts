@@ -6,5 +6,5 @@ export const API_ROUTES = {
   },
   TRACE: '/app/trace',
   APP_CONFIG: '/app/get-configurations',
-  APP_GET_CACHE_URLS: '/app/get-cache-urls',
+  APP_GET_CACHE_URLS: '/app/get-url-caches',
 };

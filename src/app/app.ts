@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from './shared/components/loader.component';
 import { AlertContainerComponent } from './shared/components/container/alert-container.component';
 import { CustomHttpService } from './core/services/custom-http.service';
-import { firstValueFrom } from 'rxjs';
+import { AppSignalService } from './shared/signals/app-signal.service';
 import { API_ROUTES } from './shared/const/api-routes.const';
 
 @Component({
@@ -13,12 +13,9 @@ import { API_ROUTES } from './shared/const/api-routes.const';
 })
 export class App {
   private customHttpService = inject(CustomHttpService);
+  private appSignalService = inject(AppSignalService);
 
-  async ngOnInit() {
-    const response: any = await firstValueFrom(
-      this.customHttpService.get<any>(API_ROUTES.APP_CONFIG)
-    );
-
-    console.log('App Component Fetched config:', response);
+  constructor() {
+    // Initialize any app-wide services or signals here
   }
 }

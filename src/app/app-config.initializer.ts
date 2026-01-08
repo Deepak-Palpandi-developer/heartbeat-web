@@ -4,18 +4,14 @@ import { firstValueFrom } from 'rxjs';
 import { AppSignalService } from './shared/signals/app-signal.service';
 import { API_ROUTES } from './shared/const/api-routes.const';
 import { CustomHttpService } from './core/services/custom-http.service';
-import { CryptoService } from './core/services/crypto.service';
-import { environment } from '../environments/environment';
 
 export function appConfigInitializerFactory(): () => Promise<void> {
   const http = inject(CustomHttpService);
   const appSignal = inject(AppSignalService);
-  const cryptoService = inject(CryptoService);
 
   return async () => {
     try {
       const response: any = await firstValueFrom(http.get<any>(API_ROUTES.APP_CONFIG));
-      console.log('App Config Initializer Fetched config:', response);
       if (response && Array.isArray(response)) {
         appSignal.setAppConfigs(response);
       }

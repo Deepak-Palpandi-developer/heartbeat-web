@@ -28,7 +28,6 @@ export function cryptoInterceptor(
   return next(modifiedReq).pipe(
     map((event) => {
       if (event instanceof HttpResponse) {
-        console.log('Crypto Interceptor Decrypting Response');
         return handleResponse(event, cryptoService);
       }
       return event;
