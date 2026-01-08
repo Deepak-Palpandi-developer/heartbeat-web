@@ -15,19 +15,9 @@ export function appConfigInitializerFactory(): () => Promise<void> {
   return async () => {
     try {
       const response: any = await firstValueFrom(http.get<any>(API_ROUTES.APP_CONFIG));
-
-      console.log('Fetched app config (raw):', response);
-
-      let config: any;
-      if (environment.IS_ENCRYPTION_ENABLED && response?.Payload) {
-        config = cryptoService.decrypt(response.Payload);
-        console.log('Decrypted app config:', config);
-      } else {
-        config = response;
-      }
-
-      if (config && Array.isArray(config)) {
-        appSignal.setAppConfigs(config);
+      console.log('App Config Initializer Fetched config:', response);
+      if (response && Array.isArray(response)) {
+        appSignal.setAppConfigs(response);
       }
     } catch (err) {
       console.error('Failed to fetch app config:', err);

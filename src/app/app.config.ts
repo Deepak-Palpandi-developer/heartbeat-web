@@ -17,7 +17,7 @@ export const appConfig: ApplicationConfig = {
     APP_CONFIG_INITIALIZER,
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([securityInterceptor, cryptoInterceptor])),
+    provideHttpClient(withInterceptors([securityInterceptor, cryptoInterceptor, authInterceptor])),
     provideTranslateService({
       loader: provideTranslateHttpLoader({
         prefix: '/i18n/',
