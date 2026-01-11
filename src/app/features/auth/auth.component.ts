@@ -1,8 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { GridShapeComponent } from '../../shared/components/grid-shape.component';
 import { ThemeToggleComponent } from '../../shared/components/theme-toggle.component';
+import { AppSignalService } from '../../shared/signals/app-signal.service';
+import { AppConfigKeys } from '../../shared/const/app.config.const';
 
 @Component({
   selector: 'heart-beat-auth',
@@ -26,12 +28,24 @@ import { ThemeToggleComponent } from '../../shared/components/theme-toggle.compo
                 <img
                   width="231"
                   height="48"
-                  src="/logo/heartbeat-logo-dark.svg"
-                  alt="HeartBeat application logo"
+                  src="{{ appConfig[appConfigKeys.UI_KEYS.BRANDING.LOGO_DARK_URL] }}"
+                  alt="{{ appConfig[appConfigKeys.UI_KEYS.BRANDING.APP_NAME] }} Logo"
                 />
               </a>
               <p class="text-center text-gray-400 dark:text-white/60">
-                {{ 'auth.branding.tagline' | translate }}
+                {{ appConfig[appConfigKeys.UI_KEYS.BRANDING.TAGLINE] }}
+              </p>
+            </div>
+          </div>
+          <div class="absolute bottom-6 left-0 right-0 flex justify-center">
+            <div class="px-4 py-2 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10">
+              <p class="text-sm text-gray-400 dark:text-white/60 font-mono">
+                v{{ appConfig[appConfigKeys.UI_KEYS.APP.VERSION] }}
+                @if (appConfig[appConfigKeys.UI_KEYS.APP.BUILD_NUMBER]) {
+                  <span class="text-gray-500 dark:text-white/40">
+                    ({{ appConfig[appConfigKeys.UI_KEYS.APP.BUILD_NUMBER] }})
+                  </span>
+                }
               </p>
             </div>
           </div>
@@ -44,4 +58,7 @@ import { ThemeToggleComponent } from '../../shared/components/theme-toggle.compo
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AuthComponent {}
+export class AuthComponent {
+  protected readonly appConfig = inject(AppSignalService).appConfigs();
+  protected readonly appConfigKeys = AppConfigKeys;
+}

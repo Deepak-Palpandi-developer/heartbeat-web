@@ -19,8 +19,13 @@ export function appConfigInitializerFactory(): () => Promise<void> {
 
       // Fetch app config
       const response: any = await firstValueFrom(http.get<any>(API_ROUTES.APP_CONFIG));
-      if (response && Array.isArray(response)) {
-        appSignal.setAppConfigs(response);
+      if (response && Array.isArray(response?.data)) {
+        appSignal.setAppConfigs(
+          response.data.reduce((acc: any, curr: any) => {
+            acc[curr.key] = curr.value;
+            return acc;
+          }, {})
+        );
       }
     } catch (err) {
       console.error('Failed to initialize app:', err);
