@@ -1,0 +1,39 @@
+<svg width="240" height="80" viewBox="0 0 240 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="heartGradientDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b81;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffa5b5;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Icon part -->
+  <g transform="translate(10, 16)">
+    <!-- Heart shape -->
+    <path d="M24 42C24 42 6 30 6 18C6 13.5 9 9 13 9C16 9 18.5 10.5 20 12.5C20.7 13.5 22 14.5 24 14.5C26 14.5 27.3 13.5 28 12.5C29.5 10.5 32 9 35 9C39 9 42 13.5 42 18C42 30 24 42 24 42Z" fill="url(#heartGradientDark)"/>
+    
+    <!-- Pulse line -->
+    <path d="M10 22 L15 22 L17.5 17 L20 28 L22.5 22 L25 22 L27.5 17 L30 28 L32.5 22 L38 22" 
+          stroke="white" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          fill="none"
+          opacity="0.98"/>
+    
+    <circle cx="24" cy="22" r="1.5" fill="white" opacity="0.95"/>
+  </g>
+  
+  <!-- Text - light for dark theme -->
+  <text x="70" y="48" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#f8f9fa">
+    Heartbeat
+  </text>
+  
+  <!-- Pulse decoration under text -->
+  <path d="M70 58 L90 58 L92 55 L94 61 L96 58 L116 58" 
+        stroke="#ff6b81" 
+        stroke-width="2" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" 
+        fill="none"
+        opacity="0.8"/>
+</svg>

@@ -7,6 +7,7 @@ import { CheckboxComponent } from '../../shared/components/checkbox.component';
 import { ButtonComponent } from '../../shared/components/button.component';
 import { RadioComponent } from '../../shared/components/radio.component';
 import { RadioGroupComponent } from '../../shared/components/radio-group.component';
+import { ThemeToggleComponent } from '../../shared/components/theme-toggle.component';
 
 @Component({
   selector: 'heart-beat-demo-controlls',
@@ -17,6 +18,7 @@ import { RadioGroupComponent } from '../../shared/components/radio-group.compone
     ButtonComponent,
     RadioComponent,
     RadioGroupComponent,
+    ThemeToggleComponent,
     ReactiveFormsModule,
     JsonPipe,
   ],
@@ -899,6 +901,98 @@ import { RadioGroupComponent } from '../../shared/components/radio-group.compone
                 </heart-beat-button>
                 <heart-beat-button variant="ghost" iconStart="lucideMoreHorizontal" />
               </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- Theme Toggle Component Examples -->
+        <details class="group border border-gray-300 dark:border-gray-700 rounded-lg" open>
+          <summary
+            class="cursor-pointer bg-gray-50 dark:bg-gray-800 px-6 py-4 font-semibold text-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center justify-between"
+          >
+            <span>Theme Toggle Components</span>
+            <span class="transform group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <div class="p-6 space-y-8">
+            <!-- Default Theme Toggle -->
+            <div>
+              <h3 class="text-sm font-medium text-gray-500 mb-3">Default Theme Toggle</h3>
+              <heart-beat-theme-toggle />
+            </div>
+
+            <!-- Different Variants -->
+            <div>
+              <h3 class="text-sm font-medium text-gray-500 mb-3">Theme Toggle Variants</h3>
+              <div class="flex flex-wrap items-center gap-4">
+                <div class="text-center">
+                  <heart-beat-theme-toggle variant="primary" />
+                  <p class="text-xs text-gray-500 mt-2">Primary</p>
+                </div>
+                <div class="text-center">
+                  <heart-beat-theme-toggle variant="secondary" />
+                  <p class="text-xs text-gray-500 mt-2">Secondary</p>
+                </div>
+                <div class="text-center">
+                  <heart-beat-theme-toggle variant="outline" />
+                  <p class="text-xs text-gray-500 mt-2">Outline</p>
+                </div>
+                <div class="text-center">
+                  <heart-beat-theme-toggle variant="ghost" />
+                  <p class="text-xs text-gray-500 mt-2">Ghost</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Different Sizes -->
+            <div>
+              <h3 class="text-sm font-medium text-gray-500 mb-3">Theme Toggle Sizes</h3>
+              <div class="flex flex-wrap items-center gap-4">
+                <div class="text-center">
+                  <heart-beat-theme-toggle size="xs" />
+                  <p class="text-xs text-gray-500 mt-2">Extra Small</p>
+                </div>
+                <div class="text-center">
+                  <heart-beat-theme-toggle size="sm" />
+                  <p class="text-xs text-gray-500 mt-2">Small</p>
+                </div>
+                <div class="text-center">
+                  <heart-beat-theme-toggle size="md" />
+                  <p class="text-xs text-gray-500 mt-2">Medium</p>
+                </div>
+                <div class="text-center">
+                  <heart-beat-theme-toggle size="lg" />
+                  <p class="text-xs text-gray-500 mt-2">Large</p>
+                </div>
+                <div class="text-center">
+                  <heart-beat-theme-toggle size="xl" />
+                  <p class="text-xs text-gray-500 mt-2">Extra Large</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Combination Examples -->
+            <div>
+              <h3 class="text-sm font-medium text-gray-500 mb-3">Size & Variant Combinations</h3>
+              <div class="flex flex-wrap items-center gap-4">
+                <heart-beat-theme-toggle size="sm" variant="secondary" />
+                <heart-beat-theme-toggle size="md" variant="outline" />
+                <heart-beat-theme-toggle size="lg" variant="ghost" />
+              </div>
+            </div>
+
+            <!-- In Navigation Bar Example -->
+            <div>
+              <h3 class="text-sm font-medium text-gray-500 mb-3">In Navigation Bar</h3>
+              <div class="flex items-center justify-between p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
+                <span class="font-semibold text-gray-900 dark:text-white">My Application</span>
+                <heart-beat-theme-toggle size="sm" variant="ghost" />
+              </div>
+            </div>
+
+            <!-- With Custom Styling -->
+            <div>
+              <h3 class="text-sm font-medium text-gray-500 mb-3">With Custom Classes</h3>
+              <heart-beat-theme-toggle className="shadow-lg ring-2 ring-brand-300 dark:ring-brand-700" />
             </div>
           </div>
         </details>
