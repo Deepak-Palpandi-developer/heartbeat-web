@@ -5,11 +5,12 @@ import { AlertContainerComponent } from './shared/components/container/alert-con
 import { CustomHttpService } from './core/services/custom-http.service';
 import { AppSignalService } from './shared/signals/app-signal.service';
 import { API_ROUTES } from './shared/const/api-routes.const';
+import { DemoControllsComponent } from './features/samples/demo-controlls.component';
 
 @Component({
   selector: 'heart-beat-root',
-  imports: [RouterOutlet, LoaderComponent, AlertContainerComponent],
-  template: `<heart-beat-loader /><heart-beat-alert-container /><router-outlet />`,
+  imports: [RouterOutlet, LoaderComponent, AlertContainerComponent, DemoControllsComponent],
+  template: `<heart-beat-loader /><heart-beat-alert-container /><heart-beat-demo-controlls /><router-outlet />`,
 })
 export class App {
   private customHttpService = inject(CustomHttpService);

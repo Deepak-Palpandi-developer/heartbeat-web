@@ -12,6 +12,9 @@ import { securityInterceptor } from './core/interceptors/security.interceptor';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { cryptoInterceptor } from './core/interceptors/crypto.interceptor';
 
+import { provideIcons } from '@ng-icons/core';
+import { appIcons } from './shared/const/app.icons';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     APP_CONFIG_INITIALIZER,
@@ -27,5 +30,6 @@ export const appConfig: ApplicationConfig = {
       lang: 'en',
     }),
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
+    provideIcons(appIcons),
   ],
 };
