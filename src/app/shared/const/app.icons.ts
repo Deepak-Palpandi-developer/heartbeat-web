@@ -52,6 +52,10 @@ import {
   lucideSave,
   lucideRefreshCw,
   lucideMoreHorizontal,
+  lucideEye,
+  lucideEyeOff,
+  lucideArrowLeft,
+  lucideChevronLeft,
 } from '@ng-icons/lucide';
 
 export const appIcons = {
@@ -108,4 +112,8 @@ export const appIcons = {
   lucideSave,
   lucideRefreshCw,
   lucideMoreHorizontal,
+  lucideEye,
+  lucideEyeOff,
+  lucideArrowLeft,
+  lucideChevronLeft,
 };

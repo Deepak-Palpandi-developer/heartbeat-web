@@ -1,1 +1,69 @@
-<p>login works!</p>
+<div class="flex flex-col justify-center flex-1 w-full max-w-md mx-auto mt-30">
+  <div>
+    <div class="mb-5 sm:mb-8">
+      <h1
+        class="mb-2 font-semibold text-gray-800 text-title-sm dark:text-white/90 sm:text-title-md"
+      >
+        Sign In
+      </h1>
+      <p class="text-sm text-gray-500 dark:text-gray-400">
+        Enter your email and password to sign in!
+      </p>
+    </div>
+
+    <!-- Form -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSignIn()" class="space-y-6">
+      <div>
+        <heart-beat-label>Email <span class="text-error-500">*</span></heart-beat-label>
+        <heart-beat-input-field
+          type="email"
+          placeholder="info@gmail.com"
+          formControlName="email"
+          class="form-input"
+        />
+        @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+        <p class="mt-1 text-xs text-error-500">
+          @if (loginForm.get('email')?.errors?.['required']) { Email is required } @else if
+          (loginForm.get('email')?.errors?.['email']) { Please enter a valid email }
+        </p>
+        }
+      </div>
+
+      <div>
+        <heart-beat-label>Password <span class="text-error-500">*</span></heart-beat-label>
+        <heart-beat-input-field
+          [type]="showPassword() ? 'text' : 'password'"
+          placeholder="Enter your password"
+          formControlName="password"
+          [iconAfter]="showPassword() ? 'lucideEye' : 'lucideEyeOff'"
+          [iconAfterClickable]="true"
+          (iconAfterClick)="togglePasswordVisibility()"
+          class="form-input"
+        />
+        @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+        <p class="mt-1 text-xs text-error-500">
+          @if (loginForm.get('password')?.errors?.['required']) { Password is required } @else if
+          (loginForm.get('password')?.errors?.['minlength']) { Password must be at least 6
+          characters }
+        </p>
+        }
+      </div>
+
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <heart-beat-checkbox formControlName="rememberMe" label="Keep me logged in" />
+        </div>
+        <a
+          routerLink="/reset-password"
+          class="text-sm text-brand-500 hover:text-brand-600 dark:text-brand-400"
+        >
+          Forgot password?
+        </a>
+      </div>
+
+      <heart-beat-button type="submit" className="w-full" size="sm" [disabled]="loginForm.invalid">
+        Sign in
+      </heart-beat-button>
+    </form>
+  </div>
+</div>

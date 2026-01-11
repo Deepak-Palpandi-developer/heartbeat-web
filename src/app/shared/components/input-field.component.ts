@@ -50,10 +50,15 @@ import { NgIconComponent } from '@ng-icons/core';
 
       @if (iconAfter()) {
       <div
-        class="absolute right-3 top-0 h-11 flex items-center pointer-events-none"
+        class="absolute right-3 top-0 h-11 flex items-center"
+        [class.pointer-events-none]="!iconAfterClickable()"
+        [class.cursor-pointer]="iconAfterClickable()"
         [class.text-gray-400]="!error() && !success()"
         [class.text-error-500]="error()"
         [class.text-success-500]="success()"
+        [class.hover:text-gray-700]="iconAfterClickable() && !error() && !success()"
+        [class.dark:hover:text-gray-300]="iconAfterClickable() && !error() && !success()"
+        (click)="onIconAfterClick()"
       >
         <ng-icon [name]="iconAfter()!" [size]="iconSize()" />
       </div>
@@ -91,9 +96,11 @@ export class InputFieldComponent implements ControlValueAccessor {
   iconBefore = input<string>();
   iconAfter = input<string>();
   iconSize = input<string>('18');
+  iconAfterClickable = input<boolean>(false);
 
   // Output (for non-reactive forms usage)
   valueChange = output<string | number>();
+  iconAfterClick = output<void>();
 
   // Internal state for ControlValueAccessor
   inputValue = signal<string | number>('');
@@ -150,6 +157,12 @@ export class InputFieldComponent implements ControlValueAccessor {
     this.inputValue.set(value);
     this.onChange(value);
     this.valueChange.emit(value);
+  }
+
+  onIconAfterClick(): void {
+    if (this.iconAfterClickable()) {
+      this.iconAfterClick.emit();
+    }
   }
 
   // ControlValueAccessor implementation

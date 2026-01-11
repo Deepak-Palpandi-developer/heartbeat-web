@@ -11,7 +11,9 @@ import { ThemeToggleComponent } from '../../shared/components/theme-toggle.compo
       <div
         class="relative flex flex-col justify-center w-full h-screen lg:flex-row dark:bg-gray-900 sm:p-0"
       >
-        <router-outlet></router-outlet>
+        <div class="flex flex-col flex-1">
+          <router-outlet></router-outlet>
+        </div>
         <aside
           class="items-center hidden w-full h-full lg:w-1/2 bg-brand-950 dark:bg-white/5 lg:grid relative"
           aria-label="Authentication branding"
