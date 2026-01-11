@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
 import { GridShapeComponent } from '../../shared/components/grid-shape.component';
 import { ThemeToggleComponent } from '../../shared/components/theme-toggle.component';
 import { AppSignalService } from '../../shared/signals/app-signal.service';
@@ -8,7 +7,7 @@ import { AppConfigKeys } from '../../shared/const/app.config.const';
 
 @Component({
   selector: 'heart-beat-auth',
-  imports: [RouterOutlet, RouterLink, TranslatePipe, GridShapeComponent, ThemeToggleComponent],
+  imports: [RouterOutlet, RouterLink, GridShapeComponent, ThemeToggleComponent],
   template: `
     <div class="relative p-6 bg-white z-1 dark:bg-gray-900 sm:p-0">
       <div
@@ -42,9 +41,9 @@ import { AppConfigKeys } from '../../shared/const/app.config.const';
               <p class="text-sm text-gray-400 dark:text-white/60 font-mono">
                 v{{ appConfig[appConfigKeys.UI_KEYS.APP.VERSION] }}
                 @if (appConfig[appConfigKeys.UI_KEYS.APP.BUILD_NUMBER]) {
-                  <span class="text-gray-500 dark:text-white/40">
-                    ({{ appConfig[appConfigKeys.UI_KEYS.APP.BUILD_NUMBER] }})
-                  </span>
+                <span class="text-gray-500 dark:text-white/40">
+                  ({{ appConfig[appConfigKeys.UI_KEYS.APP.BUILD_NUMBER] }})
+                </span>
                 }
               </p>
             </div>

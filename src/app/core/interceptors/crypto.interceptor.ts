@@ -19,6 +19,10 @@ export function cryptoInterceptor(
       modifiedReq = req.clone({
         body: encryptedBody,
         responseType: req.responseType === 'json' ? 'text' : req.responseType,
+        headers: req.headers.set(
+          'X-Encrypt-Data',
+          environment.IS_ENCRYPTION_ENABLED ? 'true' : 'false'
+        ),
       });
     } catch {
       throw new Error('Failed to encrypt request payload');

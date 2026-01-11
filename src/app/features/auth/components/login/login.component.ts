@@ -7,6 +7,7 @@ import { CheckboxComponent } from '../../../../shared/components/checkbox.compon
 import { ButtonComponent } from '../../../../shared/components/button.component';
 import { LabelComponent } from '../../../../shared/components/label.component';
 import { DividerComponent } from '../../../../shared/components/divider.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'heart-beat-login',
@@ -25,6 +26,7 @@ import { DividerComponent } from '../../../../shared/components/divider.componen
 })
 export class LoginComponent {
   private fb = inject(FormBuilder);
+  private authService = inject(AuthService);
 
   showPassword = signal(false);
 
@@ -41,10 +43,8 @@ export class LoginComponent {
   onSignIn(): void {
     if (this.loginForm.valid) {
       const formValue = this.loginForm.value;
-      console.log('Email:', formValue.email);
-      console.log('Password:', formValue.password);
-      console.log('Remember Me:', formValue.rememberMe);
-      // TODO: Implement actual authentication logic
+      let request = { userEmail: formValue.email, password: formValue.password };
+      this.authService.login(request);
     } else {
       // Mark all fields as touched to show validation errors
       this.loginForm.markAllAsTouched();
