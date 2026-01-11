@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { GridShapeComponent } from '../../shared/components/grid-shape.component';
 import { ThemeToggleComponent } from '../../shared/components/theme-toggle.component';
 
 @Component({
   selector: 'heart-beat-auth',
-  imports: [RouterOutlet, RouterLink, GridShapeComponent, ThemeToggleComponent],
+  imports: [RouterOutlet, RouterLink, TranslatePipe, GridShapeComponent, ThemeToggleComponent],
   template: `
     <div class="relative p-6 bg-white z-1 dark:bg-gray-900 sm:p-0">
       <div
@@ -30,7 +31,7 @@ import { ThemeToggleComponent } from '../../shared/components/theme-toggle.compo
                 />
               </a>
               <p class="text-center text-gray-400 dark:text-white/60">
-                Your Health, Our Priority - Monitor, Track, and Manage Your Well-being
+                {{ 'auth.branding.tagline' | translate }}
               </p>
             </div>
           </div>

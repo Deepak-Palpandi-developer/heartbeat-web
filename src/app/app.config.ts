@@ -26,8 +26,6 @@ export const appConfig: ApplicationConfig = {
         prefix: '/i18n/',
         suffix: '.json',
       }),
-      fallbackLang: 'en',
-      lang: 'en',
     }),
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
     provideIcons(appIcons),

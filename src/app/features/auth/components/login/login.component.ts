@@ -1,6 +1,7 @@
 import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { InputFieldComponent } from '../../../../shared/components/input-field.component';
 import { CheckboxComponent } from '../../../../shared/components/checkbox.component';
 import { ButtonComponent } from '../../../../shared/components/button.component';
@@ -12,6 +13,7 @@ import { DividerComponent } from '../../../../shared/components/divider.componen
   imports: [
     ReactiveFormsModule,
     RouterLink,
+    TranslatePipe,
     InputFieldComponent,
     CheckboxComponent,
     ButtonComponent,
