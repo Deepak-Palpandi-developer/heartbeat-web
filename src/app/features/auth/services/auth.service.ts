@@ -15,8 +15,6 @@ export class AuthService {
   login(request: LoginRequest) {
     this.customHttp.post<LoginResponseModel>(API_ROUTES.LOGIN, request).subscribe((res) => {
       if (res.success) {
-        console.log(res.data);
-
         localStorage.setItem(
           LOCAL_CACHE_KEYS.AUTH.IS_REMEBER_ME,
           request?.rememberMe ? 'true' : 'false'
