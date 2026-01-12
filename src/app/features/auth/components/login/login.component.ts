@@ -43,7 +43,11 @@ export class LoginComponent {
   onSignIn(): void {
     if (this.loginForm.valid) {
       const formValue = this.loginForm.value;
-      let request = { userEmail: formValue.email, password: formValue.password };
+      let request = {
+        userEmail: formValue.email ?? '',
+        password: formValue.password ?? '',
+        rememberMe: formValue.rememberMe || false,
+      };
       this.authService.login(request);
     } else {
       // Mark all fields as touched to show validation errors
