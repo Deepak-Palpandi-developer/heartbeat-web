@@ -10,6 +10,9 @@ export class AuthService {
 
   login(request: unknown) {
     this.customHttp.post(API_ROUTES.LOGIN, request).subscribe((data) => {
+      if(data.success){
+        
+      }
       console.log(data);
     });
   }

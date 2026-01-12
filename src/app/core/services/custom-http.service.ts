@@ -6,6 +6,7 @@ import { LoaderService } from './loader.service';
 import { AlertService } from './alert.service';
 import { CustomTranslateService } from './custom-translate.service';
 import { environment } from '../../../environments/environment';
+import { ApiResponseModel } from '../../shared/models/common.model';
 
 @Injectable({ providedIn: 'root' })
 export class CustomHttpService {
@@ -15,11 +16,11 @@ export class CustomHttpService {
   private translate = inject(CustomTranslateService);
   private errorShown = new Set<string>();
 
-  get<T>(url: string, options?: object): Observable<T> {
+  get<T>(url: string, options?: object): Observable<ApiResponseModel<T>> {
     const requestId = this.generateRequestId('GET', url);
     this.loader.show();
-    
-    return this.http.get<T>(environment.API_URL + url, options).pipe(
+
+    return this.http.get<ApiResponseModel<T>>(environment.API_URL + url, options).pipe(
       catchError((error) => this.handleError(error, requestId)),
       finalize(() => {
         this.loader.hide();
@@ -28,11 +29,11 @@ export class CustomHttpService {
     );
   }
 
-  post<T>(url: string, body: any, options?: object): Observable<T> {
+  post<T>(url: string, body: any, options?: object): Observable<ApiResponseModel<T>> {
     const requestId = this.generateRequestId('POST', url);
     this.loader.show();
-    
-    return this.http.post<T>(environment.API_URL + url, body, options).pipe(
+
+    return this.http.post<ApiResponseModel<T>>(environment.API_URL + url, body, options).pipe(
       catchError((error) => this.handleError(error, requestId)),
       finalize(() => {
         this.loader.hide();
@@ -41,11 +42,11 @@ export class CustomHttpService {
     );
   }
 
-  put<T>(url: string, body: any, options?: object): Observable<T> {
+  put<T>(url: string, body: any, options?: object): Observable<ApiResponseModel<T>> {
     const requestId = this.generateRequestId('PUT', url);
     this.loader.show();
-    
-    return this.http.put<T>(environment.API_URL + url, body, options).pipe(
+
+    return this.http.put<ApiResponseModel<T>>(environment.API_URL + url, body, options).pipe(
       catchError((error) => this.handleError(error, requestId)),
       finalize(() => {
         this.loader.hide();
@@ -54,11 +55,11 @@ export class CustomHttpService {
     );
   }
 
-  patch<T>(url: string, body: any, options?: object): Observable<T> {
+  patch<T>(url: string, body: any, options?: object): Observable<ApiResponseModel<T>> {
     const requestId = this.generateRequestId('PATCH', url);
     this.loader.show();
-    
-    return this.http.patch<T>(environment.API_URL + url, body, options).pipe(
+
+    return this.http.patch<ApiResponseModel<T>>(environment.API_URL + url, body, options).pipe(
       catchError((error) => this.handleError(error, requestId)),
       finalize(() => {
         this.loader.hide();
@@ -67,11 +68,11 @@ export class CustomHttpService {
     );
   }
 
-  delete<T>(url: string, options?: object): Observable<T> {
+  delete<T>(url: string, options?: object): Observable<ApiResponseModel<T>> {
     const requestId = this.generateRequestId('DELETE', url);
     this.loader.show();
-    
-    return this.http.delete<T>(environment.API_URL + url, options).pipe(
+
+    return this.http.delete<ApiResponseModel<T>>(environment.API_URL + url, options).pipe(
       catchError((error) => this.handleError(error, requestId)),
       finalize(() => {
         this.loader.hide();
@@ -89,13 +90,13 @@ export class CustomHttpService {
     if (this.errorShown.has(requestId)) {
       return throwError(() => new Error('Error already shown'));
     }
-    
+
     this.errorShown.add(requestId);
-    
+
     let errorMessage: string;
     let translateKey: string;
     let translateParams: any = {};
-    
+
     if (error.error instanceof ErrorEvent) {
       translateKey = 'alert.apiError.message';
       const translated = this.translate.translate(translateKey);
@@ -106,7 +107,7 @@ export class CustomHttpService {
       const translated = this.translate.translate(translateKey, translateParams);
       errorMessage = typeof translated === 'string' ? translated : translateKey;
     }
-    
+
     this.alertService.show({
       variant: 'error',
       title: 'alert.apiError.title',
@@ -114,7 +115,7 @@ export class CustomHttpService {
       translateKey,
       translateParams,
     });
-    
+
     return throwError(() => new Error(errorMessage));
   };
 }
