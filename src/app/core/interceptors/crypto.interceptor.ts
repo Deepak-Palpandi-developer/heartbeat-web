@@ -17,7 +17,7 @@ export function cryptoInterceptor(
     try {
       const encryptedBody = cryptoService.encrypt(req.body);
       modifiedReq = req.clone({
-        body: encryptedBody,
+        body: { Payload: encryptedBody },
         responseType: req.responseType === 'json' ? 'text' : req.responseType,
         headers: req.headers.set(
           'X-Encrypt-Data',
@@ -44,7 +44,13 @@ function handleResponse(event: HttpResponse<any>, cryptoService: CryptoService):
     return event;
   }
   try {
-    let decrypted = cryptoService.decrypt(event.body?.Payload);
+    let payload =
+      typeof event.body === 'string' ? JSON.parse(event.body)?.Payload : event.body?.Payload;
+
+    if (payload === undefined) {
+      return event;
+    }
+    let decrypted = cryptoService.decrypt(payload);
     try {
       decrypted = JSON.parse(decrypted as string);
     } catch {
