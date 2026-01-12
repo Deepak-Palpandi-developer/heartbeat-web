@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { API_ROUTES } from '../../shared/const/api-routes.const';
 import { AppSignalService } from '../../shared/signals/app-signal.service';
 import { AlertService } from '../../core/services/alert.service';
+import { LOCAL_CACHE_KEYS } from '../../shared/const/app.local.cache.const';
 
 export const authInterceptor = (
   req: HttpRequest<any>,
@@ -16,12 +17,12 @@ export const authInterceptor = (
   const alertService = inject(AlertService);
 
   // Determine storage type based on 'remember' flag
-  const remember = localStorage.getItem('remember') === 'true';
+  const remember = localStorage.getItem(LOCAL_CACHE_KEYS.AUTH.IS_REMEBER_ME) === 'true';
   const storage = remember ? localStorage : sessionStorage;
 
-  const token = storage.getItem('token');
-  const sessionToken = storage.getItem('session_token');
-  const userId = storage.getItem('user_id');
+  const token = storage.getItem(LOCAL_CACHE_KEYS.AUTH.TOKEN);
+  const sessionToken = storage.getItem(LOCAL_CACHE_KEYS.AUTH.SESSION_TOKEN);
+  const userId = storage.getItem(LOCAL_CACHE_KEYS.USER.USER_ID);
 
   let headers = req.headers;
   if (token) {

@@ -5,4 +5,7 @@ export const LOCAL_CACHE_KEYS = {
     REFRESH_TOKEN: 'AUTH.REFRESH_TOKEN',
     SESSION_TOKEN: 'AUTH.SESSION_TOKEN',
   },
+  USER: {
+    USER_ID: 'USER.USER_ID',
+  },
 };
