@@ -16,7 +16,7 @@ export const routes: Routes = [
     data: { title: 'Authentication' },
   },
   {
-    path: 'heartbeat',
+    path: '',
     loadComponent: () =>
       import('./features/landing/landing.component').then((m) => m.LandingComponent),
     loadChildren: () =>

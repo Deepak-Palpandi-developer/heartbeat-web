@@ -13,7 +13,7 @@ import { AppConfigKeys } from '../../shared/const/app.config.const';
       <div
         class="relative flex flex-col justify-center w-full h-screen lg:flex-row dark:bg-gray-900 sm:p-0"
       >
-        <div class="flex flex-col flex-1">
+        <div class="flex flex-col flex-1 justify-center">
           <router-outlet></router-outlet>
         </div>
         <aside
