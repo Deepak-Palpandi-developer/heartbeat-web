@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'heart-beat-landing',
+  selector: 'heart-beat-admin',
   imports: [RouterOutlet],
-  templateUrl: './landing.component.html',
+  templateUrl: './admin.component.html',
   styles: ``,
 })
-export class LandingComponent {}
+export class AdminComponent {}

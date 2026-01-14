@@ -17,10 +17,8 @@ export const routes: Routes = [
   },
   {
     path: '',
-    loadComponent: () =>
-      import('./features/landing/landing.component').then((m) => m.LandingComponent),
-    loadChildren: () =>
-      import('./features/landing/routes/landing.routes').then((m) => m.landingRoutes),
+    loadComponent: () => import('./features/landing.component').then((m) => m.LandingComponent),
+    loadChildren: () => import('./features/landing.routes').then((m) => m.landingRoutes),
     data: { title: 'Heart Beat' },
     canActivate: [authGuard],
   },

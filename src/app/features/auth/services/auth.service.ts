@@ -43,7 +43,11 @@ export class AuthService {
 
         this.userSignal.setUserPermissions(permissions, 'set');
 
-        if (res.data.user.landingPage) this.router.navigate(['/heartbeat']);
+        const redirectUrl =
+          this.router.routerState.snapshot.root.queryParams['redirectUrl'] ||
+          res.data.user.landingWorkspace + '/' + res.data.user.landingPage;
+          
+        this.router.navigate([redirectUrl]);
       }
     });
   }
