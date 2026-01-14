@@ -8,10 +8,12 @@ export class UserSignalService {
   private _user = signal<UserModel | null>(null);
   private _userPreferences = signal<UserPreferenceModel | null>(null);
   private _userPremissions = signal<Record<string, WorkspacePermissionModel>>({});
+  private _homepage = signal<string>('');
 
   user = computed(() => this._user());
   userPreferences = computed(() => this._userPreferences());
   userPermissions = computed(() => this._userPremissions());
+  homepage = computed(() => this._homepage());
 
   insertUser(user: UserModel | null, mode: string = 'set'): void {
     if (mode === 'set') {
@@ -49,5 +51,9 @@ export class UserSignalService {
     } else if (mode === 'clear') {
       this._userPremissions.set({});
     }
+  }
+
+  setHomepage(homepage: string): void {
+    this._homepage.set(homepage);
   }
 }

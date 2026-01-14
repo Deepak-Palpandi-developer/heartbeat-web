@@ -12,7 +12,7 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./features/auth/auth.component').then((m) => m.AuthComponent),
-    loadChildren: () => import('./features/auth/routes/auth.routes').then((m) => m.authRoutes),
+    loadChildren: () => import('./features/auth/auth.routes').then((m) => m.authRoutes),
     data: { title: 'Authentication' },
   },
   {

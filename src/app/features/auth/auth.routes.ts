@@ -9,7 +9,7 @@ export const authRoutes: Routes = [
   {
     path: 'login',
     loadComponent: () =>
-      import('../components/login/login.component').then((m) => m.LoginComponent),
+      import('../auth/components/login/login.component').then((m) => m.LoginComponent),
     data: { title: 'Login' },
   },
 ];
