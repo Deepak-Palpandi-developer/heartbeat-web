@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { environment } from '../environments/environment';
 import { authGuard } from './core/guards/auth.guard';
+import { NotFoundComponent } from './shared/components/not-found.component';
 
 export const routes: Routes = [
   {
@@ -21,5 +22,10 @@ export const routes: Routes = [
     loadChildren: () => import('./features/landing.routes').then((m) => m.landingRoutes),
     data: { title: 'Heart Beat' },
     canActivate: [authGuard],
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+    data: { title: 'Angular NotFound Dashboard | TailAdmin - Angular Admin Dashboard Template' },
   },
 ];
