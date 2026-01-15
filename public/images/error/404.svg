@@ -1,20 +1,37 @@
-<svg width="472" height="158" viewBox="0 0 472 158" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="203.103" y="41.7015" width="22.1453" height="20.7141" rx="2.63433" fill="#465FFF" stroke="#465FFF" strokeWidth="0.752667"/>
-<rect x="246.752" y="41.7015" width="22.1453" height="20.7141" rx="2.63433" fill="#465FFF" stroke="#465FFF" strokeWidth="0.752667"/>
-<rect x="258.201" y="98.2303" width="22.1453" height="20.7141" rx="2.63433" fill="#465FFF" stroke="#465FFF" strokeWidth="0.752667"/>
-<rect x="191.654" y="98.2303" width="22.1453" height="20.7141" rx="2.63433" fill="#465FFF" stroke="#465FFF" strokeWidth="0.752667"/>
-<rect x="207.396" y="82.847" width="57.5655" height="20.7141" rx="2.63433" fill="#465FFF" stroke="#465FFF" strokeWidth="0.752667"/>
-<rect x="152.769" y="15.167" width="166.462" height="130.311" rx="28" stroke="#465FFF" strokeWidth="24"/>
-<rect x="0.0405273" y="0.522461" width="32.6255" height="77.5957" rx="6.26271" fill="#465FFF"/>
-<rect x="0.0405273" y="0.522461" width="32.6255" height="77.5957" rx="6.26271" stroke="#465FFF"/>
-<rect x="75.8726" y="3.16748" width="32.6255" height="154.31" rx="6.26271" fill="#465FFF"/>
-<rect x="75.8726" y="3.16748" width="32.6255" height="154.31" rx="6.26271" stroke="#465FFF"/>
-<rect x="16.7939" y="91.3442" width="32.6255" height="77.5957" rx="6.26271" transform="rotate(-90 16.7939 91.3442)" fill="#465FFF"/>
-<rect x="16.7939" y="91.3442" width="32.6255" height="77.5957" rx="6.26271" transform="rotate(-90 16.7939 91.3442)" stroke="#465FFF"/>
-<rect x="363.502" y="0.522461" width="32.6255" height="77.5957" rx="6.26271" fill="#465FFF"/>
-<rect x="363.502" y="0.522461" width="32.6255" height="77.5957" rx="6.26271" stroke="#465FFF"/>
-<rect x="439.334" y="3.16748" width="32.6255" height="154.31" rx="6.26271" fill="#465FFF"/>
-<rect x="439.334" y="3.16748" width="32.6255" height="154.31" rx="6.26271" stroke="#465FFF"/>
-<rect x="380.255" y="91.3442" width="32.6255" height="77.5957" rx="6.26271" transform="rotate(-90 380.255 91.3442)" fill="#465FFF"/>
-<rect x="380.255" y="91.3442" width="32.6255" height="77.5957" rx="6.26271" transform="rotate(-90 380.255 91.3442)" stroke="#465FFF"/>
+<svg width="472" height="280" viewBox="0 0 472 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background elements -->
+  <circle cx="80" cy="200" r="4" fill="#E5E7EB" opacity="0.5"/>
+  <circle cx="400" cy="60" r="6" fill="#E5E7EB" opacity="0.5"/>
+  <circle cx="420" cy="220" r="3" fill="#E5E7EB" opacity="0.5"/>
+  
+  <!-- Main 404 Text -->
+  <g id="404-text">
+    <!-- First 4 -->
+    <path d="M80 80L80 180M80 180L120 180M100 130L40 130L40 80" stroke="#1F2937" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- 0 (circle with heartbeat line) -->
+    <circle cx="236" cy="130" r="60" stroke="#EF4444" stroke-width="16" fill="none"/>
+    <path d="M206 130L220 130L228 115L236 145L244 115L252 130L266 130" stroke="#EF4444" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Second 4 -->
+    <path d="M352 80L352 180M352 180L392 180M372 130L312 130L312 80" stroke="#1F2937" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  
+  <!-- Decorative heart icon -->
+  <g id="heart-icon">
+    <path d="M236 50C236 50 220 35 200 35C180 35 170 45 170 60C170 80 190 95 236 130C282 95 302 80 302 60C302 45 292 35 272 35C252 35 236 50 236 50Z" fill="#EF4444" opacity="0.2"/>
+    <path d="M236 50C236 50 220 35 200 35C180 35 170 45 170 60C170 80 190 95 236 130C282 95 302 80 302 60C302 45 292 35 272 35C252 35 236 50 236 50Z" stroke="#EF4444" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- Pulse line decoration -->
+  <g id="pulse-line" opacity="0.3">
+    <path d="M40 240L80 240L90 230L100 250L110 230L120 240L160 240" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M312 240L340 240L350 230L360 250L370 230L380 240L432 240" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  
+  <!-- Small dots decoration -->
+  <circle cx="60" cy="100" r="2" fill="#EF4444" opacity="0.4"/>
+  <circle cx="410" cy="140" r="2" fill="#EF4444" opacity="0.4"/>
+  <circle cx="50" cy="170" r="2" fill="#EF4444" opacity="0.4"/>
+  <circle cx="422" cy="100" r="2" fill="#EF4444" opacity="0.4"/>
 </svg>
