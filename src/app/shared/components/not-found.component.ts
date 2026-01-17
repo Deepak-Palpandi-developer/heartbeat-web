@@ -10,7 +10,7 @@ import { GridShapeComponent } from './grid-shape.component';
     >
       <heart-beat-grid-shape />
 
-      <div class="mx-auto w-full max-w-[242px] text-center sm:max-w-[472px]">
+      <div class="mx-auto w-full max-w-60.5 text-center sm:max-w-118">
         <h1 class="mb-8 font-bold text-gray-800 text-title-md dark:text-white/90 xl:text-title-2xl">
           ERROR
         </h1>
